@@ -19,10 +19,6 @@ Create a `.env` file in the root directory:
 
 ```bash
 # .env
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-DB_NAME=your_db_name
-PORT=3000
 DB_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
 ```
 
@@ -34,6 +30,11 @@ Start the application and database using Docker Compose:
 
 ```bash
 docker-compose up --build
+```
+Using docker to build for multiple platforms and push to docker hub
+
+```bash
+DOCKER_BUILDKIT=1 docker buildx build --platform linux/arm64,linux/amd64 --push -t baseband1t/config-store:1.0.0 . 
 ```
 
 The application will be available at [http://localhost:3000](http://localhost:3000).
