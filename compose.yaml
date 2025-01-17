@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      target: production  # Use the prod stage from Dockerfile
+    ports:
+      - 3000:3000  # Map port 3000 on host to 3000 in container
+    env_file:
+      - .env
+    environment:
+      - PORT=3000  # Use port 3000 for the Go app
+      - DB_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+    depends_on:
+      - db
+    networks:
+      - config-store-net
+
+  db:
+    image: postgres:17.1
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - config-store-net
+
+networks:
+  config-store-net:
+
+volumes:
+  postgres-data:
