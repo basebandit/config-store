@@ -1,0 +1,41 @@
+# Ignore the binary executable
+config-store
+
+# Ignore build artifacts
+*.exe
+*.out
+*.a
+
+# Ignore Go-specific directories
+/bin/
+/pkg/
+/obj/
+
+# Ignore dependency directories
+/vendor/
+
+# Ignore environment and config files
+.env
+*.env
+*.toml
+*.yaml
+*.yml
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore IDE/editor files
+*.swp
+*.swo
+*.idea/
+.vscode/
+*.bak
+
+# Ignore Git-related files
+.git/
+.gitignore
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
